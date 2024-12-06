@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     public bool isCourseNaive;
     private void Awake() {
+        Application.targetFrameRate = 60;
         //Singleton architecture
         if (instance != null) {
             Destroy(this);
