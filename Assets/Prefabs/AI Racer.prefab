@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6691462448191622466
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -7021074699558140018, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_Volume
+      value: 0.205
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: flames
+      value: 
+      objectReference: {fileID: 786951765968438181}
+    - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: control
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: flashShader
+      value: 
+      objectReference: {fileID: 4800000, guid: 0b3d0532df4e8ee4ab2dc3cc752d2f5d, type: 3}
+    - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: walls.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: controlRecoverySpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: crashOutDotThreshold
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: crashOutSpeedThreshold
+      value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: controlRecoveryCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: controlRecoveryDegreeMinimum
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7057164239466250676, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_LinearDrag
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8694463261162142824, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: m_Name
+      value: AI Racer
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4587410873825709688, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+--- !u!1 &786951765968438181 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6212445012785467111, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+  m_PrefabInstance: {fileID: 6691462448191622466}
+  m_PrefabAsset: {fileID: 0}

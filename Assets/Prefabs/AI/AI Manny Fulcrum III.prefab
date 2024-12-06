@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4427581414334868863
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 524995900239280779, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 524995900239280779, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524995900239280779, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524995900239280779, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 524995900239280779, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524995900239280779, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524995900239280779, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 524995900239280779, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524995900239280779, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524995900239280779, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 681600263001645789, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876250144112627794, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_Name
+      value: AI Manny Fulcrum III
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743046611807366068, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      propertyPath: m_Volume
+      value: 0.33
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6983763485617971778, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2876250144112627794, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8964891099000036022}
+  m_SourcePrefab: {fileID: 100100000, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+--- !u!1 &1917288325332532525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2876250144112627794, guid: 1b41a81699d4a9a4080fdbef8baf6ea2, type: 3}
+  m_PrefabInstance: {fileID: 4427581414334868863}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8964891099000036022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917288325332532525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6d02689368ca24e8eb30a964c7818b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  throttle: 0
+  rotateInput: 0
+  acceleration: 10
+  maxSpeed: 8
+  maxRotateSpeed: 0.5
+  turnRadiusOffset: 18.9
+  control: 0
+  crashOutDotThreshold: 0
+  crashOutSpeedThreshold: 0
+  racerColor: {r: 1, g: 1, b: 1, a: 1}
+  controlRecoveryCooldown: 0
+  controlRecoveryDegreeMinimum: 0
+  controlRecoverySpeed: 0
+  asrc: {fileID: 0}
+  damageClips:
+  - {fileID: 8300000, guid: a64b5836460b04f43a026aa8253f3b2e, type: 3}
+  - {fileID: 8300000, guid: 0873a723d766e0d4fba6f9b3beb743c6, type: 3}
+  - {fileID: 8300000, guid: c44bf00ea462c9140bd4d279274943a9, type: 3}
+  - {fileID: 8300000, guid: 8c0a157ea0f3ff14897ec94cd0842738, type: 3}
+  - {fileID: 8300000, guid: 4fd07abe8d72e8145aa883cb32ac03a7, type: 3}
+  - {fileID: 8300000, guid: 5e92c2396e32fad41afe5370a0a8d3c8, type: 3}
+  - {fileID: 8300000, guid: 2f4e0d8482ce5ae448637df92a3cfedc, type: 3}
+  - {fileID: 8300000, guid: 6c4ea418c56b8e046b5d1e1b12494cc3, type: 3}
+  - {fileID: 8300000, guid: 028b14898399fa04fb1954483534f879, type: 3}
+  - {fileID: 8300000, guid: 789d31f3b027e2b498eaff301d851442, type: 3}
+  - {fileID: 8300000, guid: 00f530ac05aff7045ae8bae0581b2731, type: 3}
+  - {fileID: 8300000, guid: c9aa27967b4f3d943a839562215c5244, type: 3}
+  flashShader: {fileID: 4800000, guid: 0b3d0532df4e8ee4ab2dc3cc752d2f5d, type: 3}
+  targetCheckpoint: {fileID: 0}
+  currentCheckpoint: {fileID: 0}
+  previousCheckpoint: {fileID: 0}
+  farthestCheckpoint: {fileID: 0}
+  turnDetectionDistance: 7.5
+  walls:
+    serializedVersion: 2
+    m_Bits: 0
+  naive: 0
+  turnThreshold: 50
+  turnDetectionSpacing: 0
