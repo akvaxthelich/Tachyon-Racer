@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour {
     public List<Checkpoint> checkpoints;
 
     [SerializeField]
+    public GameObject startPointParent;
+    public List<Transform> startPoints;
+    [SerializeField]
     public bool isCourseNaive;
     private void Awake() {
         Application.targetFrameRate = 60;
@@ -41,6 +44,7 @@ public class GameManager : MonoBehaviour {
     void Start() {
         
     }
+
 
     void LoadCourse() {
         checkpoints = TryGetCheckpoints();
@@ -61,9 +65,19 @@ public class GameManager : MonoBehaviour {
         return checkpoints;
     }
 
+    List<Transform> TryGetStartPoints() {
+        GameObject startPointParent = GameObject.Find("Startpoint Parent");
+        if (startPointParent == null) {
+            Debug.LogWarning("This course is missing a Startpoint Parent. Defaulting to 0,0.");
+            return null;
+        }
+        startPoints = startPointParent.GetComponentsInChildren<Transform>().ToList();
+        return startPoints;
+    }
+
+
     void SynthesizeCourseData() {
 
-        //link checkpoint 'nexts', accounting for ending checkpoint
         for(int i = 0; i < checkpoints.Count(); i++) { 
             checkpoints[i].nextCheckpoint = (i == checkpoints.Count() - 1) ? checkpoints[0] : checkpoints[i + 1];
             checkpoints[i].prevCheckpoint = (i == 0) ? checkpoints[checkpoints.Count() - 1] : checkpoints[i - 1];
@@ -78,11 +92,11 @@ public class GameManager : MonoBehaviour {
     }
 
     private void InitRacers() {
-        //spawn all racers at init points inside level
+        //
     }
 
     private void InitCourse() {
-        //get course by name in resources folder
+        //TODO get course by name in resources folder
     }
 
 }

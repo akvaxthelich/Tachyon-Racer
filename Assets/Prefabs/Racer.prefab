@@ -311,6 +311,7 @@ MonoBehaviour:
   throttle: 0
   rotateInput: 0
   acceleration: 6
+  brakeQuotient: 2
   maxSpeed: 5
   maxRotateSpeed: 0.5
   turnRadiusOffset: 45
@@ -420,6 +421,7 @@ MonoBehaviour:
   throttle: 0
   rotateInput: 0
   acceleration: 10
+  brakeQuotient: 0
   maxSpeed: 8
   maxRotateSpeed: 0.5
   turnRadiusOffset: 18.9

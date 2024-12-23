@@ -9,13 +9,17 @@ public class BaseRacer : MonoBehaviour
     [SerializeField]
     protected Rigidbody2D rb;
     [SerializeField]
-    protected float throttle; //between -1 and 1, input TODO
+    protected float verticalInput; //between -1 and 1, input TODO
     [SerializeField]
-    protected float rotateInput;
-    
+    protected float horizontalInput;
+    [SerializeField]
+    protected float accelerateControllerInput;
+
     protected GameObject flames;
     [SerializeField]
     protected float acceleration;
+    [SerializeField]
+    protected float brakeQuotient;
     [SerializeField]
     protected float maxSpeed;
     [SerializeField]
@@ -224,4 +228,32 @@ public class BaseRacer : MonoBehaviour
         }
 
     }
+
+    protected void Accelerate() {
+        if (verticalInput > 0) {
+            rb.AddForce(transform.up * verticalInput * acceleration, ForceMode2D.Force);
+        }
+        
+    }
+    protected void Brake() {
+        if (verticalInput < 0) {
+            rb.AddForce(-rb.velocity.normalized * acceleration / brakeQuotient, ForceMode2D.Force);
+        }
+        
+    }
+
+    protected void AccelerateController() {
+        if (accelerateControllerInput > 0) {
+            rb.AddForce(transform.up * accelerateControllerInput * acceleration, ForceMode2D.Force);
+        }
+
+    }
+
+    protected void BrakeController() {
+        if (accelerateControllerInput < 0) {
+            rb.AddForce(-rb.velocity.normalized * acceleration / brakeQuotient, ForceMode2D.Force);
+        }
+
+    }
+
 }

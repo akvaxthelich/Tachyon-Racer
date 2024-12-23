@@ -59,7 +59,7 @@ public class AIRacer : BaseRacer {
 
     protected override void Update() {
         base.Update();
-        flames.SetActive(throttle > 0);
+        flames.SetActive(verticalInput > 0);
 
         turnDetectionDistance = rb.velocity.magnitude;
     }
@@ -73,7 +73,7 @@ public class AIRacer : BaseRacer {
         else {
             NavigateTrackNaive();
         }
-        rb.AddForce(transform.up * throttle * acceleration, ForceMode2D.Force);
+        rb.AddForce(transform.up * verticalInput * acceleration, ForceMode2D.Force);
         rb.AddTorque(-rotateDirection * maxRotateSpeed);
         if (rb.velocity.magnitude > maxSpeed) {
             rb.velocity = rb.velocity.normalized * maxSpeed;
@@ -94,7 +94,7 @@ public class AIRacer : BaseRacer {
     }
 
     void Go() {
-        throttle = 1f;
+        verticalInput = 1f;
     }
    
     //HelloWorld(printf);
@@ -141,7 +141,7 @@ public class AIRacer : BaseRacer {
 
             rotateDirection = turnFactor * -Mathf.Sign(angle); //stop changing the fucking sign on this it's CORRECT PLEASE ANDREW JESUS PLEASE //L
 
-            throttle = throttleFactor;
+            verticalInput = throttleFactor;
 
 
         }
@@ -163,7 +163,7 @@ public class AIRacer : BaseRacer {
 
         //this would USE TURNRADIUSOFFSET SCALED BETWEEN 20 and 90, based on the Uras Factor (???)
 
-        throttle = 1;
+        verticalInput = 1;
 
             RaycastHit2D minDistHit = RayCastHit2DMinDist(leftHit, forwardHit, rightHit);
             if (minDistHit == leftHit) {
