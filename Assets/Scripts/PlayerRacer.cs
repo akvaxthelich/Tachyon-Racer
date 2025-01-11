@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 
 public class PlayerRacer : BaseRacer
@@ -37,14 +38,15 @@ public class PlayerRacer : BaseRacer
         if (verticalInput < 0) {
             verticalInput *= control;
         }
-
+        HandleEngineAudio();
         //flames.SetActive(accelerateControllerInput > 0);
         flames.SetActive(verticalInput > 0);
-
+        HandleUpdateCheckpoint();
+        
     }
 
     void FixedUpdate() {
-
+        
         Accelerate();
         Brake();
         //AccelerateController();
@@ -74,6 +76,19 @@ public class PlayerRacer : BaseRacer
         Gizmos.DrawWireSphere(controlDirectionGizmo, controllerDebugRadius);
     }
 
+    protected override void HandleEngineAudio() {
+        asrcs[1].pitch = Mathf.Clamp(rb.velocity.magnitude / maxSpeed, 0.75f, 1.2f);
+        if (Input.GetButtonDown(controlVerticalAxis) && Input.GetAxisRaw(controlVerticalAxis) == 1) {
+            asrcs[1].PlayOneShot(engineClips[0]);
+            asrcs[1].clip = engineClips[1];
+            asrcs[1].Play();
+        }
+        else if (Input.GetButtonUp(controlVerticalAxis)) {
+            asrcs[1].PlayOneShot(engineClips[2]);
+            asrcs[1].clip = null;
+            asrcs[1].Stop();
+        }
+    }
 
     void ControllerRotate() {
 

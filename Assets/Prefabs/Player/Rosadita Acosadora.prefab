@@ -28,6 +28,18 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4587410873825709688, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: controlVerticalAxis
+      value: Vertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587410873825709688, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: controlHorizontalAxis
+      value: Horizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587410873825709688, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: accelerateAndBrakeAxis
+      value: Accelerate_Brake_Controller
+      objectReference: {fileID: 0}
     - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.16
@@ -74,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: e890f54acb68e3f4dbfd590863e67ab8, type: 3}
     - target: {fileID: 8694463261162142824, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
       propertyPath: m_Name
-      value: Racer Variant
+      value: Rosadita Acosadora
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}

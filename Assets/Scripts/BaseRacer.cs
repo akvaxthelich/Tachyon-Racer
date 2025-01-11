@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class BaseRacer : MonoBehaviour
 {
+    #region Movement
     [SerializeField]
     protected Rigidbody2D rb;
     [SerializeField]
@@ -26,19 +28,34 @@ public class BaseRacer : MonoBehaviour
     protected float maxRotateSpeed;
     [SerializeField, Range(0f, 65f)]
     protected float turnRadiusOffset = 45f;
+    #endregion
+
+    [SerializeField]
+    Color racerColor = Color.white;
+
+    #region Race Specifics
+    int currLap;
+    int cCount; 
+    protected float effectiveDistance;
+    [SerializeField]
+    protected int checkpointsPassed;
+    //StatPlacement: -1 if first race, -1 by default.
+    //currPlacement is set per frame, using closest point
+
+    //Only players need to know what their placements are live, game manager only checks placement as a player crosses final lap
+    public int statPlacement = -1; //set on race finish in game manager
+    int currPlacement = -1;        //set per frame
+                                   //compare lap
+                                   //calculate distance from closest point on vehicle to next checkpoint center, add up differentials to the start checkpoint
+    #endregion
+
+    #region Control
     [SerializeField, Range(0f, 1f)]
     protected float control;
     [SerializeField, Range(0f, 1f)]
     protected float crashOutDotThreshold; //base at 0.95f
-    [SerializeField, Range (0f, 1f)]
+    [SerializeField, Range(0f, 1f)]
     protected float crashOutSpeedThreshold; //base at 0.85f, might be the same threshold to start cooling down, not sure yet.
-
-    [SerializeField]
-    Color racerColor = Color.white;
-    //TODO SEPARATE OUT THE INDIVIDUAL RACER STATS
-
-    protected float controlRecoveryTimer;
-
     [SerializeField, Range(0f, 5f)]
     protected float controlRecoveryCooldown; //should be based on a range given racer class. 'Rebound' racers 
 
@@ -46,17 +63,29 @@ public class BaseRacer : MonoBehaviour
     protected float controlRecoveryDegreeMinimum; //how little can this vehicle turn before allowing the control recovery?
     [SerializeField, Range(0f, 2f)]
     protected float controlRecoverySpeed;  //keep below 1, or 0 to 2 for Rebound.
+
+    protected float controlRecoveryTimer;
     /// <summary>
     /// Control determines how much a Racer can turn, brake, and the angle at which they can crash out.
     /// It ranges from 0 to 1. At 1, a Racer can turn normally, brake normally, and crashes at 10 degrees, above some minimum speed. 
     /// At 0, a player cannot turn, has reduced brakes, and can crash at 90 degrees.
     /// </summary>
+    #endregion
 
-
+    #region Audio
     [SerializeField]
-    AudioSource asrc;
+    protected List<AudioSource> asrcs;
     [SerializeField]
-    protected AudioClip[] damageClips;
+    protected AudioSource damageSrc;
+    [SerializeField]
+    protected AudioSource engineSrc;
+    [SerializeField]
+    protected AudioClip[] damageClips; //TODO grab these from the gamemanager (might be faster than resources)
+    [SerializeField]
+    protected AudioSource engineAsrc;
+    [SerializeField]
+    protected AudioClip[] engineClips;
+    #endregion
     //TODO shadows might render on the sky/outside road boundaries
     #region Flash shader + graphics (Shadow behavior in 'SimpleShadow.cs') 
     SpriteRenderer sr;
@@ -66,6 +95,7 @@ public class BaseRacer : MonoBehaviour
 
     #endregion
 
+    #region Checkpoints
     [SerializeField]
     protected Checkpoint targetCheckpoint;      //distinct from gamemanager, these are for ai calcs and 
     
@@ -77,16 +107,16 @@ public class BaseRacer : MonoBehaviour
     
     [SerializeField]
     protected Checkpoint farthestCheckpoint;    //only for respawning, do not use in AI
-
-    
-    //beneficial to include float constant for timing
-    //ie: -1.0f means this state will go until it is transitioned
-    //ie 5.0f this behavior
+    #endregion
 
     protected virtual void Start() {
-        asrc = GetComponent<AudioSource>();
+        asrcs = GetComponentsInChildren<AudioSource>().ToList<AudioSource>();
+        damageSrc = asrcs[0];
+        engineSrc = asrcs[1];
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+
+        engineAsrc = GetComponentInChildren<AudioSource>();
         InitShader();
 
         flames = transform.GetChild(0).gameObject;
@@ -94,28 +124,28 @@ public class BaseRacer : MonoBehaviour
         control = 1.0f;
         if (!GameManager.instance.isCourseNaive) {
             InitCheckpoint();
+            InitLap();
         }
 
 
     }
 
     protected virtual void Update() {
-
+        
         if (rb.angularVelocity < controlRecoveryDegreeMinimum) {
             controlRecoveryTimer += Time.deltaTime;
+
             if (controlRecoveryTimer >= controlRecoveryCooldown) {
                 RecoverControl();
             }
-
         }
         else {
             controlRecoveryTimer = 0;
         }
-        
+        CalculatePlacement();
     }
     protected void InitCheckpoint() {
-
-        int cCount = GameManager.instance.checkpoints.Count;
+        cCount = GameManager.instance.checkpoints.Count;
         previousCheckpoint = GameManager.instance.checkpoints[cCount - 1];
         currentCheckpoint = GameManager.instance.checkpoints[0];
         targetCheckpoint = GameManager.instance.checkpoints[1];
@@ -132,10 +162,15 @@ public class BaseRacer : MonoBehaviour
             currentCheckpoint = temp;
             previousCheckpoint = temp2;
 
-            //print("Current: " + currentCheckpoint);
-            //print("Target: " + targetCheckpoint);
+            if (previousCheckpoint == GameManager.instance.checkpoints[cCount - 1]) {
+                AdvanceLap();
+            }
+            else {
+                checkpointsPassed++;
+            }
+            
         }
-        
+        //count checkpoints passed on advance
     }
 
     protected void RetreatCheckpoint() {
@@ -145,9 +180,11 @@ public class BaseRacer : MonoBehaviour
             currentCheckpoint = currentCheckpoint.prevCheckpoint; //cause of this,
             targetCheckpoint = temp;
             previousCheckpoint = currentCheckpoint.prevCheckpoint; //guh order matters. durr. !anteayer!
-            
-        }
 
+            checkpointsPassed--;
+        }
+        
+        //decrement checkpoints passed on retreat
     }
 
     protected void HandleUpdateCheckpoint() { 
@@ -157,6 +194,13 @@ public class BaseRacer : MonoBehaviour
 
     }
 
+    protected virtual void HandleEngineAudio() {
+        //clip 0, 1, 2
+        //open, engine, close
+        //on transition observer pattern for ai,
+        //use input for player
+        
+    }
     public float GetControl() {
         return control;
     }
@@ -166,6 +210,23 @@ public class BaseRacer : MonoBehaviour
     }
     protected void UpdateControl(float amount) {
         control = Mathf.Clamp01(control + amount);
+    }
+    protected void CalculatePlacement() {
+
+        effectiveDistance = (((currentCheckpoint.terminalDifferential - currentCheckpoint.differential + Vector2.Distance(transform.position, targetCheckpoint.transform.position)) / GameManager.instance.trackLength) * (GameManager.instance.lapCount - currLap - 1)); 
+
+        Debug.Log(effectiveDistance);
+        //add current lap - 1 once laps work
+    //take minimum thereafter
+    }
+    protected void InitLap() {
+        currLap = 1;
+        checkpointsPassed = 0;
+    }
+    protected void AdvanceLap() {
+        currLap++;
+        checkpointsPassed = 0;
+        Debug.Log("You are now on lap: " + currLap);
     }
 
     protected void CrashOut() { 
@@ -216,15 +277,15 @@ public class BaseRacer : MonoBehaviour
         int choice = Random.Range(0, 3);
 
         if (damageAmount <= 0.2) {
-            asrc.PlayOneShot(damageClips[choice]);
+            damageSrc.PlayOneShot(damageClips[choice]);
             return;
         }
         if (damageAmount <= 0.5) {
-            asrc.PlayOneShot(damageClips[choice + 4]);
+            damageSrc.PlayOneShot(damageClips[choice + 4]);
             return;
         }
         if(damageAmount <= 1) {
-            asrc.PlayOneShot(damageClips[choice + 8]);
+            damageSrc.PlayOneShot(damageClips[choice + 8]);
         }
 
     }

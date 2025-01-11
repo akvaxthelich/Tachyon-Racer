@@ -8,6 +8,7 @@ public class Checkpoint : MonoBehaviour
 
     public float differential; //calculated and set by game manager, distance to next checkpoint in sequence.
 
+    public float terminalDifferential; //calculated and set by game manager, distance to end from this checkpoint including all distances in between.
     public Checkpoint nextCheckpoint;
     public Checkpoint prevCheckpoint;
 

@@ -92,17 +92,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  acceleration: 10
-  maxSpeed: 8
+  verticalInput: 0
+  horizontalInput: 0
+  accelerateControllerInput: 0
+  acceleration: 20
+  brakeQuotient: 2
+  maxSpeed: 10
   maxRotateSpeed: 0.5
   turnRadiusOffset: 45
+  racerColor: {r: 1, g: 1, b: 1, a: 1}
+  checkpointsPassed: 0
+  statPlacement: -1
   control: 1
   crashOutDotThreshold: 0.8
   crashOutSpeedThreshold: 0.95
   controlRecoveryCooldown: 2
   controlRecoveryDegreeMinimum: 10
   controlRecoverySpeed: 0.5
-  asrc: {fileID: 0}
+  asrcs: []
+  damageSrc: {fileID: 0}
+  engineSrc: {fileID: 0}
   damageClips:
   - {fileID: 8300000, guid: a64b5836460b04f43a026aa8253f3b2e, type: 3}
   - {fileID: 8300000, guid: 0873a723d766e0d4fba6f9b3beb743c6, type: 3}
@@ -116,11 +125,17 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 789d31f3b027e2b498eaff301d851442, type: 3}
   - {fileID: 8300000, guid: 00f530ac05aff7045ae8bae0581b2731, type: 3}
   - {fileID: 8300000, guid: c9aa27967b4f3d943a839562215c5244, type: 3}
+  engineAsrc: {fileID: 0}
+  engineClips:
+  - {fileID: 8300000, guid: fcd6a440812b0434f976d9ee13f27cd1, type: 3}
+  - {fileID: 8300000, guid: 1f7d4a670f82bf445a2bf64e8ab9262c, type: 3}
+  - {fileID: 8300000, guid: 28dc96201bc406545b276f79755926b0, type: 3}
   flashShader: {fileID: 4800000, guid: 0b3d0532df4e8ee4ab2dc3cc752d2f5d, type: 3}
   targetCheckpoint: {fileID: 0}
   currentCheckpoint: {fileID: 0}
   previousCheckpoint: {fileID: 0}
   farthestCheckpoint: {fileID: 0}
-  flames: {fileID: 3655067897750393447, guid: 1bd6c220b09dfac4e814e8306de4f300, type: 3}
   controlHorizontalAxis: Horizontal
   controlVerticalAxis: Vertical
+  accelerateAndBrakeAxis: Accelerate_Brake_Controller
+  controllerDebugRadius: 0

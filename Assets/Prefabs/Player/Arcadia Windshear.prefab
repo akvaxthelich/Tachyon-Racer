@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 184740249504525380, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.19215687
       objectReference: {fileID: 0}
     - target: {fileID: 184740249504525380, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 0.19215687
       objectReference: {fileID: 0}
     - target: {fileID: 184740249504525380, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 0.19215687
       objectReference: {fileID: 0}
     - target: {fileID: 2522369713915903508, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
       propertyPath: m_Sprite
@@ -34,11 +34,23 @@ PrefabInstance:
       objectReference: {fileID: 2283821397153821117}
     - target: {fileID: 4587410873825709688, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
       propertyPath: maxSpeed
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4587410873825709688, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
       propertyPath: acceleration
-      value: 10
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587410873825709688, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: controlVerticalAxis
+      value: Vertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587410873825709688, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: controlHorizontalAxis
+      value: Horizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587410873825709688, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: accelerateAndBrakeAxis
+      value: Accelerate_Brake_Controller
       objectReference: {fileID: 0}
     - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
       propertyPath: m_LocalPosition.x

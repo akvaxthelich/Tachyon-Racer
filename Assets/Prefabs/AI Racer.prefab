@@ -21,9 +21,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: maxSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
       propertyPath: flashShader
       value: 
       objectReference: {fileID: 4800000, guid: 0b3d0532df4e8ee4ab2dc3cc752d2f5d, type: 3}
+    - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: acceleration
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2630479429329540979, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
       propertyPath: walls.m_Bits
       value: 64

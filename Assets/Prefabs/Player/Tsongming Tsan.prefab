@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 339008089042120111, guid: 31af2b29c6bc6b041b88f804bc9348df, type: 3}
       propertyPath: m_Name
-      value: Tsongming Tsan Variant
+      value: Tsongming Tsan
       objectReference: {fileID: 0}
     - target: {fileID: 1439525123157044701, guid: 31af2b29c6bc6b041b88f804bc9348df, type: 3}
       propertyPath: m_Sprite
@@ -55,6 +55,18 @@ PrefabInstance:
     - target: {fileID: 2600600870519654262, guid: 31af2b29c6bc6b041b88f804bc9348df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878902153415188415, guid: 31af2b29c6bc6b041b88f804bc9348df, type: 3}
+      propertyPath: controlVerticalAxis
+      value: Vertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878902153415188415, guid: 31af2b29c6bc6b041b88f804bc9348df, type: 3}
+      propertyPath: controlHorizontalAxis
+      value: Horizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878902153415188415, guid: 31af2b29c6bc6b041b88f804bc9348df, type: 3}
+      propertyPath: accelerateAndBrakeAxis
+      value: Accelerate_Brake_Controller
       objectReference: {fileID: 0}
     - target: {fileID: 6853871353594851283, guid: 31af2b29c6bc6b041b88f804bc9348df, type: 3}
       propertyPath: m_Sprite

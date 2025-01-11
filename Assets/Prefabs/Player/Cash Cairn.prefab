@@ -24,6 +24,18 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4587410873825709688, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: controlVerticalAxis
+      value: Vertical
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587410873825709688, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: controlHorizontalAxis
+      value: Horizontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4587410873825709688, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
+      propertyPath: accelerateAndBrakeAxis
+      value: Accelerate_Brake_Controller
+      objectReference: {fileID: 0}
     - target: {fileID: 6344348102701569713, guid: d61cf12ba9c1cb54aafeea5766352595, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.72

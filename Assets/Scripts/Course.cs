@@ -8,7 +8,7 @@ public class Course : MonoBehaviour
     //Courses have a lap count, starting points for racers, checkpoints, music, .
 
     //Data synthesis is performed by the game manager on course load.
-    // Start is called before the first frame update
+
 
     [SerializeField]
     public string courseName; 
@@ -18,15 +18,7 @@ public class Course : MonoBehaviour
     public int lapCount;
     [SerializeField]
     public string musicPath;
+    [SerializeField]
+    public Color bgColor;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

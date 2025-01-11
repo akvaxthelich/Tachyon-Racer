@@ -42,7 +42,7 @@ public class AIRacer : BaseRacer {
 
         NONE,               //remove all behaviors 
         GO,                 //full throttle, no course correction or avoidance
-        STOP,       //remove all behaviors, attempt to stop moving by braking in the correct direction. think recover from smash training
+        STOP,       //remove all behaviors, attempt to stop moving by braking. think recover from smash training
         NAVIGATE_COURSE,    //follow checkpoints, prioritizing proximity based avoidance
         NAVIGATE_NAIVE,     //fuck a checkpoint, avoidance behavior only 
         SPINOUT,            //turn uncontrollably, transition out. 
@@ -97,7 +97,6 @@ public class AIRacer : BaseRacer {
         verticalInput = 1f;
     }
    
-    //HelloWorld(printf);
     void NavigateTrack() {
 
         //TODO: Prioritize avoidance or navigation based on distance to either. Should be inversely proportional
