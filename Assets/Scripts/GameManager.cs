@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour {
     public int lapCount;//TODO return from course itself
 
     [SerializeField]
-    public List<BaseRacer> racers; //includes player and 
+    public List<BaseRacer> racers; //includes player and ai
 
 
     [SerializeField]
@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour {
         InitCourse();
         checkpoints = TryGetCheckpoints();
         isCourseNaive = (checkpoints == null);
+        if (!isCourseNaive) { 
+            TryGetStartPoints();
+        }
     }
     List<Checkpoint> TryGetCheckpoints() { //determine naivety
         GameObject checkpointParent = GameObject.Find("Checkpoint Parent");
@@ -64,6 +67,16 @@ public class GameManager : MonoBehaviour {
         //because the checkpointParent may still not have any children, so that list may be empty or null
         SynthesizeCourseData(); //take those checkpoints and calculate the course length from all of the differentials between them
         return checkpoints;
+    }
+
+    List<Transform> TryGetStartpoints() { //post naivety. List of transforms because the data i
+        GameObject startpointParent = GameObject.Find("Startpoint Parent");
+        if (startpointParent == null) {
+            Debug.LogWarning("This course is missing a Startpoint Parent, Racers will spawn with algorithmic pattern.");
+            return null; //TODO spawn them at zero
+        }
+        startPoints = startpointParent.GetComponentsInChildren<Transform>().ToList(); //Startpoints are in order of assigned placement.
+        return startPoints;
     }
 
     List<Transform> TryGetStartPoints() {
@@ -83,14 +96,11 @@ public class GameManager : MonoBehaviour {
             checkpoints[i].nextCheckpoint = (i == checkpoints.Count() - 1) ? checkpoints[0] : checkpoints[i + 1];
             checkpoints[i].prevCheckpoint = (i == 0) ? checkpoints[checkpoints.Count() - 1] : checkpoints[i - 1];
 
-            //calculate checkpoint differentials,
             checkpoints[i].differential = Vector2.Distance(checkpoints[i].transform.position, checkpoints[i].nextCheckpoint.transform.position);
-            
-            
+                        
             trackLength += checkpoints[i].differential;
         }
-        //function does not produce correct terminal differentials which leads to an infinity error elsewhere.
-        //Fixing...
+
         float progressiveDifferential = 0f;
         for (int j = 0; j < checkpoints.Count(); j++){
 
@@ -102,8 +112,14 @@ public class GameManager : MonoBehaviour {
         
     }
 
-    private void InitRacers() {
-        
+    private void InitRacersAndPlacement() {
+        //consider saving each racer's lastraceplacement when spawning them?
+        //for (int i = 0; i < racers.Count; i++) {
+        //    GameObject.Instantiate(racers[i], );
+        //}
+        //Instantiate racers at startpoints based on last race placement
+        //if -1, shuffle and spawn randomly, and assign currPlacement per racer at spawn time
+        //reset all racers' control stats to 1. can't delete
     }
 
     private void InitCourse() {

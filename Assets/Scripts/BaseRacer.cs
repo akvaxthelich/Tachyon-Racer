@@ -36,7 +36,7 @@ public class BaseRacer : MonoBehaviour
     #region Race Specifics
     int currLap;
     int cCount; 
-    protected float effectiveDistance;
+    public float effectiveDistance;
     [SerializeField]
     protected int checkpointsPassed;
     //StatPlacement: -1 if first race, -1 by default.
@@ -213,9 +213,9 @@ public class BaseRacer : MonoBehaviour
     }
     protected void CalculatePlacement() {
 
-        effectiveDistance = (((currentCheckpoint.terminalDifferential - currentCheckpoint.differential + Vector2.Distance(transform.position, targetCheckpoint.transform.position)) / GameManager.instance.trackLength) * (GameManager.instance.lapCount - currLap - 1)); 
-
-        Debug.Log(effectiveDistance);
+        effectiveDistance = (((currentCheckpoint.terminalDifferential - currentCheckpoint.differential + Vector2.Distance(transform.position, targetCheckpoint.transform.position)) / GameManager.instance.trackLength) + (GameManager.instance.lapCount - currLap)); 
+        //0 = finished race
+        
         //add current lap - 1 once laps work
     //take minimum thereafter
     }

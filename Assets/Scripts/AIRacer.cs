@@ -106,6 +106,7 @@ public class AIRacer : BaseRacer {
         forwardHit = Physics2D.Raycast(transform.position, transform.up, turnDetectionDistance, walls);
         rightHit = Physics2D.Raycast(transform.position, Quaternion.Euler(0, 0, turnRadiusOffset / 2) * transform.up, turnDetectionDistance, walls);
 
+        //prioritizes avoidance behavior over navigation. avoidance should involve braking as well
         bool avoidance = (ThreeMinIgnoreZero(leftHit.distance, forwardHit.distance, rightHit.distance) < currentCheckpoint.differential);
 
         if (avoidance) {
@@ -117,9 +118,11 @@ public class AIRacer : BaseRacer {
             RaycastHit2D minDistHit = RayCastHit2DMinDist(leftHit, forwardHit, rightHit);
             if (minDistHit == leftHit) {
                 rotateDirection = -1;
+                verticalInput = -0.25f;
             }
             if (minDistHit == rightHit) {
                 rotateDirection =  1;
+                verticalInput = -0.25f;
             }
         }
         else {

@@ -69,8 +69,20 @@ PrefabInstance:
       value: 0.2509804
       objectReference: {fileID: 0}
     - target: {fileID: 8673245405866826289, guid: 72384d2fcf1747341bba78377bd15f30, type: 3}
+      propertyPath: maxSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8673245405866826289, guid: 72384d2fcf1747341bba78377bd15f30, type: 3}
+      propertyPath: acceleration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8673245405866826289, guid: 72384d2fcf1747341bba78377bd15f30, type: 3}
       propertyPath: walls.m_Bits
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8673245405866826289, guid: 72384d2fcf1747341bba78377bd15f30, type: 3}
+      propertyPath: maxRotateSpeed
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 9213687816712287062, guid: 72384d2fcf1747341bba78377bd15f30, type: 3}
       propertyPath: m_Sprite
